@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-top: 5rem;
+        }
+
+        .movies{
+            height: 10rem;
+            width: 10rem;
+            margin: 3rem;
+        }
+
+        .price{
+            background-color: rgb(119, 160, 247);
+            height: 8rem;
+            padding: 2rem;
+            font-size: 2rem;
+        }
+
+        .heading, .price{
+            color: black;
+            text-align: center;
+            margin: 0;
+        }
+
+        select, h1{
+            position: fixed;
+        }
+
+        h1{
+            top: 0px;
+        }
+
+        select{
+            width: 8rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book My Show</h1>
+    <!-- Drop Down -->
+     <select>
+        <option value="none">None</option>
+        <option value="action">Action</option>
+        <option value="comedy">Comedy</option>
+        <option value="romance">Romance</option>
+     </select>
+     <div class="movies">
+        <h3 class="heading">Action Movie - 1</h3>
+        <p class="price" data-category="action">Rs. 100</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Action Movie - 2</h3>
+        <p class="price" data-category="action">Rs. 200</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Action Movie - 3</h3>
+        <p class="price" data-category="action">Rs. 150</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Romance - 1</h3>
+        <p class="price" data-category="romance">Rs. 100</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Romance - 2</h3>
+        <p class="price" data-category="romance">Rs. 150</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Romance - 3</h3>
+        <p class="price" data-category="romance">Rs. 200</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Action Movie - 4</h3>
+        <p class="price" data-category="action">Rs. 350</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Comedy - 1</h3>
+        <p class="price" data-category="comedy">Rs. 250</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Comedy - 2</h3>
+        <p class="price" data-category="comedy">Rs. 150</p>
+     </div>
+     <div class="movies">
+        <h3 class="heading">Romance - 4</h3>
+        <p class="price" data-category="romance">Rs. 250</p>
+     </div>
+
+    <!-- Task - Filter out the movies based on the option selected in the drop down. -->
+    <!-- Make the filter work -->
+    <!-- If user selects Action in the drop down the just show Action movies on the webpage and so on. -->
+    <!-- If user selects None then show all the movies on the webpage. -->
+    <!-- Steps :
+    1. Identify what user is selecting in the drop down.
+    2. Get all the movies.
+    3. Compare the movie category with the category that user selected in the drop down.
+    4. Just show the movies where category is equal else hide that movie. -->
+    <script>
+        const dropDown =  document.querySelector("select")
+        // console.log(dropDown)
+        dropDown.addEventListener('change', function(){
+            const selectedValue =  dropDown.value;
+
+            const allPriceTags = document.querySelectorAll(".price")
+            // comparing data-category value of price tag with the selected value in the drop down
+
+            if(selectedValue == "none"){
+                for(let i=0; i < allPriceTags.length; i++){
+                    allPriceTags[i].parentElement.style.display = 'block'
+                }
+            } else{
+                for(let i=0; i < allPriceTags.length; i++){
+                    if(allPriceTags[i].getAttribute('data-category') == selectedValue){
+                        // show the selected category movies
+                        allPriceTags[i].parentElement.style.display = 'block'
+                    } else{
+                        // hide the movies
+                        allPriceTags[i].parentElement.style.display = 'none'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
